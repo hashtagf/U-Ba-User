@@ -3,13 +3,19 @@ import Router from 'vue-router'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
 import Process from '@/components/Process'
+import noaccept from '@/components/noaccept'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/noaccept',
+      name: 'noaccept',
+      component: noaccept
+    },
+    {
+      path: '/Login',
       name: 'Login',
       component: Login
     },
