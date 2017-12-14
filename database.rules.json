@@ -1,0 +1,17 @@
+{
+  "rules": {
+    ".read": "auth != null",
+    "twitter": {
+      "users": {
+        "$uid": {
+          "posts": {
+            ".write": "auth != null && $uid == auth.uid"
+          },
+          "name": {
+            ".write": "true"
+          }
+        }
+      }
+    }
+  }
+}
