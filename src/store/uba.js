@@ -50,6 +50,16 @@ export default {
     },
     logout () {
       firebase.auth().signOut()
+    },
+    call () {
+      firebase.auth().onAuthStateChanged((user) => {
+        firebase.database().ref('call/' + '').push({
+          userID: user.uid,
+          name: user.displayName,
+          photoURL: user.photoURL
+        })
+        router.push('/loader')
+      })
     }
   }
 }

@@ -6,4 +6,3 @@ export default {
     storageBucket: 'u-ba-d180c.appspot.com',
     messagingSenderId: '1094667467042'
   }
-  

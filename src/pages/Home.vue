@@ -1,24 +1,25 @@
 <template>
   <div class="Login container">
   <br>
-    <div class="columns is-centered">
-      <div class="column is-6 is-centered box">
-        <button type="button" name="button"class="button is-danger is-right" @click="logout()">Logout</button>
+    <div class="columns is-centered ">
+      <div class="column is-6 is-centered has-text-centered">
+              <h3 class="is-size-1">Uba-User</h3>
         <div class="google-map">
 
         </div>
         <hr>
         <div class="columns">
           <div class="column is-4">
-            <img :src="`${user.fb.photoURL}`" alt="" width="100px" height="100px" style="border-radius:50%;">
+            <img :src="user.fb.photoURL" alt="" width="100px" height="100px" style="border-radius:50%;"><br>
+            <button type="button" name="button"class="button is-danger is-right" @click="logout()">Logout</button>
           </div>
           <div class="column is-8">
             ID : {{user.fb.uid}} <br>
             Name : {{user.displayName}} <br>
-            {{lattitude}} : {{longitude}}
+            {{lattitude}} : {{longitude}} <br> <br>
+            <button type="button" class="button is-link is-medium" style="width:80%;" @click="call()">Calling UBa</button>
           </div>
         </div>
-          <button type="button" class="button is-link is-medium" style="width:80%;">Calling UBa</button>
       </div>
     </div>
   </div>
@@ -28,18 +29,9 @@
 import { mapActions, mapGetters } from 'vuex'
 export default {
 
-  name: 'Loign',
+  name: 'Login',
   data () {
     return {
-      center: {lat: 10.0, lng: 10.0},
-      markers: [
-        {
-          position: {lat: 10.0, lng: 10.0}
-        },
-        {
-          position: {lat: 11.0, lng: 11.0}
-        }
-      ],
       lattitude: 0,
       longitude: 0
     }
@@ -53,15 +45,9 @@ export default {
   methods: {
     ...mapActions([
       'login',
-      'logout'
-    ]),
-    getLocation () {
-      if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition()
-      } else {
-          x.innerHTML = 'Geolocation is not supported by this browser.'
-      }
-    }
+      'logout',
+      'call'
+    ])
   }
 }
 </script>

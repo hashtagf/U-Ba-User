@@ -6,8 +6,6 @@ import router from './router'
 import store from './store'
 import { sync } from 'vuex-router-sync'
 import Bulma from '../node_modules/bulma/css/bulma.css'
-import VueGeolocation from 'vue-geolocation'
-Vue.install(VueGeolocation)
 
 sync(store, router)
 Vue.use(Bulma)
