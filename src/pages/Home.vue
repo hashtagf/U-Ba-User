@@ -16,7 +16,11 @@
           <div class="column is-8">
             ID : {{user.fb.uid}} <br>
             Name : {{user.displayName}} <br>
-            {{lattitude}} : {{longitude}} <br> <br>
+            <div id="location">
+
+            </div>
+            {{latitude}} : {{longitude}}
+            <br> <br>
             <button type="button" class="button is-link is-medium" style="width:80%;" @click="call()">Calling UBa</button>
           </div>
         </div>
@@ -26,13 +30,13 @@
 </template>
 <script>
 // var apiKey = 'AIzaSyDn7zvKP5RUc6FZnQFacNnH0TW1x1EE_qU'
+getLocation()
 import { mapActions, mapGetters } from 'vuex'
 export default {
-
   name: 'Login',
   data () {
     return {
-      lattitude: 0,
+      latitude: 0,
       longitude: 0
     }
   },
@@ -49,6 +53,19 @@ export default {
       'call'
     ])
   }
+}
+function getLocation () {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition)
+  }
+}
+function showPosition (position) {
+  // var mapOptions = {
+  //   center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+  //   zoom: 10,
+  //   mapTypeId: google.maps.MapTypeId.HYBRID
+  // }
+  // google.maps.Map(document.getElementById('google-map'), mapOptions)
 }
 </script>
 

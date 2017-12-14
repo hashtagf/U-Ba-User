@@ -10,12 +10,16 @@ firebase.initializeApp(config)
 export default {
   state: {
     isReady: false,
-    user: {}
+    user: {},
+    latitude: 0,
+    longitude: 0
   },
   getters: {
     user: state => state.user,
     route: state => state.route,
-    isReady: state => state.isReady
+    isReady: state => state.isReady,
+    latitude: state => state.latitude,
+    longitude: state => state.longitudelongitude
   },
   mutations: {
     setReady (state) {
@@ -23,6 +27,12 @@ export default {
     },
     setUser (state, user) {
       state.user = user
+    },
+    setLatitude (state, l) {
+      state.latitude = l
+    },
+    setLongitude (state, l) {
+      state.longitude = l
     }
   },
   actions: {
@@ -52,14 +62,33 @@ export default {
       firebase.auth().signOut()
     },
     call () {
-      firebase.auth().onAuthStateChanged((user) => {
-        firebase.database().ref('call/' + '').push({
-          userID: user.uid,
-          name: user.displayName,
-          photoURL: user.photoURL
-        })
-        router.push('/loader')
-      })
+      getLocation()
     }
   }
+}
+function getLocation () {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition)
+  }
+}
+var today = new Date()
+var dd = today.getDate()
+var mm = today.getMonth() + 1 // January is 0!
+var yyyy = today.getFullYear()
+var h = today.getHours()
+var m = today.getMinutes()
+var s = today.getSeconds()
+today = dd + '/' + mm + '/' + yyyy + ' ' + h + ':' + m + ':' + s
+function showPosition (position) {
+  firebase.auth().onAuthStateChanged((user) => {
+    firebase.database().ref('call/' + '').push({
+      userID: user.uid,
+      name: user.displayName,
+      photoURL: user.photoURL,
+      Latitude: position.coords.latitude,
+      Longitude: position.coords.longitude,
+      time: today
+    })
+    router.push('/loader')
+  })
 }
