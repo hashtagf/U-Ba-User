@@ -3,13 +3,14 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import bulma from '../node_modules/bulma/css/bulma.css'
-import vueFire from 'vuefire'
-import vueSweetalert2 from 'vue-sweetalert2'
+import store from './store'
+import { sync } from 'vuex-router-sync'
+import Bulma from '../node_modules/bulma/css/bulma.css'
+import VueGeolocation from 'vue-geolocation'
+Vue.install(VueGeolocation)
 
-Vue.use(bulma)
-Vue.use(vueFire)
-Vue.use(vueSweetalert2)
+sync(store, router)
+Vue.use(Bulma)
 
 Vue.config.productionTip = false
 
@@ -17,6 +18,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

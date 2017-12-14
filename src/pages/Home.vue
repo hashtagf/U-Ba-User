@@ -1,0 +1,78 @@
+<template>
+  <div class="Login container">
+  <br>
+    <div class="columns is-centered">
+      <div class="column is-6 is-centered box">
+        <button type="button" name="button"class="button is-danger is-right" @click="logout()">Logout</button>
+        <div class="google-map">
+
+        </div>
+        <hr>
+        <div class="columns">
+          <div class="column is-4">
+            <img :src="`${user.fb.photoURL}`" alt="" width="100px" height="100px" style="border-radius:50%;">
+          </div>
+          <div class="column is-8">
+            ID : {{user.fb.uid}} <br>
+            Name : {{user.displayName}} <br>
+            {{lattitude}} : {{longitude}}
+          </div>
+        </div>
+          <button type="button" class="button is-link is-medium" style="width:80%;">Calling UBa</button>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+// var apiKey = 'AIzaSyDn7zvKP5RUc6FZnQFacNnH0TW1x1EE_qU'
+import { mapActions, mapGetters } from 'vuex'
+export default {
+
+  name: 'Loign',
+  data () {
+    return {
+      center: {lat: 10.0, lng: 10.0},
+      markers: [
+        {
+          position: {lat: 10.0, lng: 10.0}
+        },
+        {
+          position: {lat: 11.0, lng: 11.0}
+        }
+      ],
+      lattitude: 0,
+      longitude: 0
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'user',
+      'isReady'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'login',
+      'logout'
+    ]),
+    getLocation () {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition()
+      } else {
+          x.innerHTML = 'Geolocation is not supported by this browser.'
+      }
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+  .google-map {
+    width: 100%;
+    height: 450px;
+    margin: auto;
+    margin-bottom: 10px;
+    background-color: grey;
+  }
+</style>
