@@ -5,6 +5,12 @@ import Home from '@/components/Home'
 import Process from '@/components/Process'
 import noaccept from '@/components/noaccept'
 import loading from '@/components/loading'
+import Login from '@/pages/Login'
+import Home from '@/pages/Home'
+import Process from '@/pages/Process'
+import noaccept from '@/pages/noaccept'
+import loader from '@/pages/loader'
+
 Vue.use(Router)
 
 export default new Router({
@@ -15,7 +21,7 @@ export default new Router({
       component: noaccept
     },
     {
-      path: '/Login',
+      path: '/',
       name: 'Login',
       component: Login
     },
@@ -33,6 +39,11 @@ export default new Router({
       path: '/loading',
       name: 'loading',
       component: loading
+    },
+    {
+      path: '/loader',
+      name: 'loader',
+      component: loader
     }
   ]
 })
