@@ -5,7 +5,10 @@
       <div class="column is-6 is-centered has-text-centered">
               <h3 class="is-size-1">Uba-User</h3>
         <div class="google-map">
-
+          <gmap-map :center="center" :zoom="15" style="width: 100%; height: 450px">
+            <gmap-marker :key="index" v-for="(m, index) in markers" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position">
+            </gmap-marker>
+          </gmap-map>
         </div>
         <hr>
         <div class="columns">
@@ -17,7 +20,6 @@
             ID : {{user.fb.uid}} <br>
             Name : {{user.displayName}} <br>
             <div id="location">
-
             </div>
             {{latitude}} : {{longitude}}
             <br> <br>
@@ -37,7 +39,12 @@ export default {
   data () {
     return {
       latitude: 0,
-      longitude: 0
+      longitude: 0,
+      msg: 'Header',
+      center: {lat: 13.754, lng: 100.5014},
+      markers: [{
+        position: {lat: 13.754, lng: 100.5014}
+      }]
     }
   },
   computed: {

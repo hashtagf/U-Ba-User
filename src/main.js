@@ -6,7 +6,13 @@ import router from './router'
 import store from './store'
 import { sync } from 'vuex-router-sync'
 import Bulma from '../node_modules/bulma/css/bulma.css'
-
+import * as VueGoogleMaps from 'vue2-google-maps'
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyDn7zvKP5RUc6FZnQFacNnH0TW1x1EE_qU',
+    libraries: 'places'
+  }
+})
 sync(store, router)
 Vue.use(Bulma)
 

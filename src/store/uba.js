@@ -87,7 +87,8 @@ function showPosition (position) {
       photoURL: user.photoURL,
       Latitude: position.coords.latitude,
       Longitude: position.coords.longitude,
-      time: today
+      time: today,
+      state: 'wait'
     })
     router.push('/loader')
   })
