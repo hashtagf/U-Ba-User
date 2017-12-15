@@ -4,7 +4,7 @@ import Login from '@/components/Login'
 import Home from '@/components/Home'
 import Process from '@/components/Process'
 import noaccept from '@/components/noaccept'
-
+import loading from '@/components/loading'
 Vue.use(Router)
 
 export default new Router({
@@ -28,6 +28,11 @@ export default new Router({
       path: '/Process',
       name: 'Process',
       component: Process
+    },
+    {
+      path: '/loading',
+      name: 'loading',
+      component: loading
     }
   ]
 })
