@@ -1,5 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Login from '@/components/Login'
+import Home from '@/components/Home'
+import Process from '@/components/Process'
+import noaccept from '@/components/noaccept'
+import loading from '@/components/loading'
 import Login from '@/pages/Login'
 import Home from '@/pages/Home'
 import Process from '@/pages/Process'
@@ -29,6 +34,11 @@ export default new Router({
       path: '/Process',
       name: 'Process',
       component: Process
+    },
+    {
+      path: '/loading',
+      name: 'loading',
+      component: loading
     },
     {
       path: '/loader',
